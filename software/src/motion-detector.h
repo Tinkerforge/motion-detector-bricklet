@@ -25,7 +25,7 @@
 #include <stdint.h>
 #include "bricklib/com/com_common.h"
 
-#define MOTION_DEBOUNCE 250
+#define MOTION_DEBOUNCE 50
 
 #define FID_GET_MOTION_DETECTED   1
 #define FID_MOTION_DETECTED       2

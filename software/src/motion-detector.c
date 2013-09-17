@@ -56,6 +56,7 @@ void constructor(void) {
 	BC->motion = MOTION_NOT_DETECTED;
 	BC->motion_detected = false;
 	BC->detection_cycle_ended = false;
+	BC->debounce = 0;
 
     PIN_DETECT.type = PIO_INPUT;
     PIN_DETECT.attribute = PIO_DEFAULT;
