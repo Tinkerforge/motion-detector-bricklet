@@ -29,8 +29,8 @@
 
 #include "motion-detector.h"
 
-#define MOTION_DETECTED     0
-#define MOTION_NOT_DETECTED 1
+#define MOTION_DETECTED     1
+#define MOTION_NOT_DETECTED 0
 
 #define BRICKLET_FIRMWARE_VERSION_MAJOR 2
 #define BRICKLET_FIRMWARE_VERSION_MINOR 0
