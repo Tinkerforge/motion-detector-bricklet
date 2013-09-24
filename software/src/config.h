@@ -43,6 +43,7 @@
 #define BRICKLET_DEVICE_IDENTIFIER 233
 
 #define PIN_DETECT (BS->pin1_ad)
+#define PIN_LED    (BS->pin2_da)
 
 #define LOGGING_LEVEL LOGGING_DEBUG
 #define DEBUG_BRICKLET 0

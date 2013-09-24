@@ -61,6 +61,10 @@ void constructor(void) {
     PIN_DETECT.type = PIO_INPUT;
     PIN_DETECT.attribute = PIO_DEFAULT;
     BA->PIO_Configure(&PIN_DETECT, 1);
+
+    PIN_LED.type = PIO_OUTPUT_1;
+    PIN_LED.attribute = PIO_DEFAULT;
+    BA->PIO_Configure(&PIN_LED, 1);
 }
 
 void destructor(void) {
@@ -81,12 +85,16 @@ void tick(const uint8_t tick_type) {
 				BC->motion = MOTION_DETECTED;
 				BC->debounce = MOTION_DEBOUNCE;
 				BC->motion_detected = true;
+
+				PIN_LED.pio->PIO_CODR = PIN_LED.mask;
 			}
 		} else {
 			if(BC->motion != MOTION_NOT_DETECTED) {
 				BC->motion = MOTION_NOT_DETECTED;
 				BC->debounce = MOTION_DEBOUNCE;
 				BC->detection_cycle_ended = true;
+
+				PIN_LED.pio->PIO_SODR = PIN_LED.mask;
 			}
 		}
 	}
