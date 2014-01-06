@@ -53,6 +53,8 @@ void get_motion_detected(const ComType com, const GetMotionDetected *data) {
 }
 
 void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
 	BC->motion = MOTION_NOT_DETECTED;
 	BC->motion_detected = false;
 	BC->detection_cycle_ended = false;
