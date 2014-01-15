@@ -6,26 +6,26 @@ require_once('Tinkerforge/BrickletMotionDetector.php');
 use Tinkerforge\IPConnection;
 use Tinkerforge\BrickletMotionDetector;
 
-$host = 'localhost';
-$port = 4223;
-$uid = 'XYZ'; // Change to your UID
+const HOST = 'localhost';
+const PORT = 4223;
+const UID = 'XYZ'; // Change to your UID
 
 // Callback function for end of detection cycle
 function cb_detection_cycle_ended()
 {
-	echo "Detection Cycle Ended (next detection possible in ~3 seconds)\n";
+    echo "Detection Cycle Ended (next detection possible in ~3 seconds)\n";
 }
 
 // Callback function for detected motion
 function cb_motion_detected()
 {
-	echo "Motion Detected\n";
+    echo "Motion Detected\n";
 }
 
 $ipcon = new IPConnection(); // Create IP connection
-$md = new BrickletMotionDetector($uid, $ipcon); // Create device object
+$md = new BrickletMotionDetector(UID, $ipcon); // Create device object
 
-$ipcon->connect($host, $port); // Connect to brickd
+$ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Register detected callback to function cb_motion_detected
