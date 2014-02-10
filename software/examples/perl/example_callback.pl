@@ -19,8 +19,8 @@ sub cb_motion_detected
     print "\nMotion Detected\n";
 }
 
-my $ipcon = IPConnection->new(); # Create IP connection
-my $md = BrickletMotionDetector->new(&UID, $ipcon); # Create device object
+my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
+my $md = Tinkerforge::BrickletMotionDetector->new(&UID, $ipcon); # Create device object
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
