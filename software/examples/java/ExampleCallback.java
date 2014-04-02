@@ -2,8 +2,8 @@ import com.tinkerforge.BrickletMotionDetector;
 import com.tinkerforge.IPConnection;
 
 public class ExampleCallback {
-	private static final String host = "localhost";
-	private static final int port = 4223;
+	private static final String HOST = "localhost";
+	private static final int PORT = 4223;
 	private static final String UID = "XYZ"; // Change to your UID
 	
 	// Note: To make the example code cleaner we do not handle exceptions. Exceptions you
@@ -12,7 +12,7 @@ public class ExampleCallback {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
 		BrickletMotionDetector md = new BrickletMotionDetector(UID, ipcon); // Create device object
 
-		ipcon.connect(host, port); // Connect to brickd
+		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
 		// Add and implement "detected" and "detection cycle ended" listeners 
