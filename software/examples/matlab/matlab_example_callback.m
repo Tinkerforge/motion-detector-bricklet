@@ -13,20 +13,20 @@ function matlab_example_callback
     % Don't use device before ipcon is connected
 
     % Register detected callback to function cb_motion_detected
-    set(md, 'MotionDetectedCallback', @(h, e)cb_motion_detected());
+    set(md, 'MotionDetectedCallback', @(h, e) cb_motion_detected(e));
 
     % Register detection cycle ended callback to function cb_detection_cycle_ended
-    set(md, 'DetectionCycleEndedCallback', @(h, e)cb_detection_cycle_ended());
+    set(md, 'DetectionCycleEndedCallback', @(h, e) cb_detection_cycle_ended(e));
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
 
 % Callback function for end of detection cycle
-function cb_detection_cycle_ended()
+function cb_detection_cycle_ended(e)
     fprintf('Detection Cycle Ended (next detection possible in ~3 seconds)\n');
 end
 % Callback function for detected motion
-function cb_motion_detected()
+function cb_motion_detected(e)
     fprintf('Motion Detected\n');
 end
