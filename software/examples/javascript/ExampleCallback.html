@@ -43,8 +43,7 @@
                 md.on(Tinkerforge.BrickletMotionDetector.CALLBACK_MOTION_DETECTED,
                     // Callback function for detected motion
                     function() {
-                        textArea.value += 'Motion Detected';
-                        textArea.value += '\n';
+                        textArea.value += 'Motion Detected\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
@@ -52,8 +51,7 @@
                 md.on(Tinkerforge.BrickletMotionDetector.CALLBACK_DETECTION_CYCLE_ENDED,
                     // Callback function for end of detection cycle
                     function() {
-                        textArea.value += 'Detection Cycle Ended (next detection possible in ~3 seconds)';
-                        textArea.value += '\n';
+                        textArea.value += 'Detection Cycle Ended (next detection possible in ~3 seconds)\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
