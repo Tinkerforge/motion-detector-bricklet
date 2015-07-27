@@ -26,7 +26,6 @@ md.register_callback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED) do 
   puts 'Detection Cycle Ended (next detection possible in ~3 seconds)'
 end
 
-
 puts 'Press key to exit'
 $stdin.gets
 ipcon.disconnect

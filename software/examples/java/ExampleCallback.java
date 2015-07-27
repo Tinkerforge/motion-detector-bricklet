@@ -1,5 +1,5 @@
-import com.tinkerforge.BrickletMotionDetector;
 import com.tinkerforge.IPConnection;
+import com.tinkerforge.BrickletMotionDetector;
 
 public class ExampleCallback {
 	private static final String HOST = "localhost";

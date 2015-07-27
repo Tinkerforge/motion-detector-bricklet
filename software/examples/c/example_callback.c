@@ -8,7 +8,6 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-
 // Callback function for end of detection cycle 
 void cb_detection_cycle_ended(void *user_data) {
 	(void)user_data; // avoid unused parameter warning
@@ -30,7 +29,7 @@ int main() {
 
 	// Create device object
 	MotionDetector md;
-	motion_detector_create(&md, UID, &ipcon); 
+	motion_detector_create(&md, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
