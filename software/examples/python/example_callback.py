@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_motion_detector import MotionDetector
+from tinkerforge.bricklet_motion_detector import BrickletMotionDetector
 
 # Callback function for end of detection cycle
 def cb_detection_cycle_ended():
@@ -18,7 +18,7 @@ def cb_motion_detected():
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    md = MotionDetector(UID, ipcon) # Create device object
+    md = BrickletMotionDetector(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
