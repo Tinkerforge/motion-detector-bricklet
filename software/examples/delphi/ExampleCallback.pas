@@ -37,7 +37,6 @@ begin
   WriteLn('Detection Cycle Ended (next detection possible in ~3 seconds)');
 end;
 
-
 procedure TExample.Execute;
 begin
   { Create IP connection }
