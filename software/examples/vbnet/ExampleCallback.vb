@@ -20,6 +20,7 @@ Module ExampleCallback
         Dim md As New BrickletMotionDetector(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
+        ' Don't use device before ipcon is connected
 
         ' Register detected callback to function MotionDetectedCB
         AddHandler md.MotionDetected, AddressOf MotionDetectedCB
