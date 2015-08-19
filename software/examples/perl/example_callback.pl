@@ -1,11 +1,11 @@
-#!/usr/bin/perl  
+#!/usr/bin/perl
 
 use Tinkerforge::IPConnection;
 use Tinkerforge::BrickletMotionDetector;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'jXm'; # Change to your UID
+use constant UID => 'XYZ'; # Change to your UID
 
 # Callback function for end of detection cycle
 sub cb_detection_cycle_ended
@@ -34,4 +34,3 @@ $md->register_callback($md->CALLBACK_DETECTION_CYCLE_ENDED, 'cb_detection_cycle_
 print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
-
