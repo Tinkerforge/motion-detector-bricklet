@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -6,16 +7,16 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback function for end of detection cycle
-	static void DetectionCycleEndedCB(BrickletMotionDetector sender)
-	{
-		System.Console.WriteLine("Detection Cycle Ended (next detection possible in ~3 seconds)");
-	}
-
-	// Callback function for detected motion
+	// Callback function for motion detected callback
 	static void MotionDetectedCB(BrickletMotionDetector sender)
 	{
-		System.Console.WriteLine("Motion Detected");
+		Console.WriteLine("Motion Detected");
+	}
+
+	// Callback function for detection cycle ended callback
+	static void DetectionCycleEndedCB(BrickletMotionDetector sender)
+	{
+		Console.WriteLine("Detection Cycle Ended (next detection possible in ~3 seconds)");
 	}
 
 	static void Main()
@@ -26,14 +27,14 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Register detected callback to function MotionDetectedCB
+		// Register motion detected callback to function MotionDetectedCB
 		md.MotionDetected += MotionDetectedCB;
 
 		// Register detection cycle ended callback to function DetectionCycleEndedCB
 		md.DetectionCycleEnded += DetectionCycleEndedCB;
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

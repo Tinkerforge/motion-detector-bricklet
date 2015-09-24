@@ -25,13 +25,13 @@ const
 var
   e: TExample;
 
-{ Callback function for detected motion }
+{ Callback procedure for motion detected callback }
 procedure TExample.MotionDetectedCB(sender: TBrickletMotionDetector);
 begin
   WriteLn('Motion Detected');
 end;
 
-{ Callback function for end of detection cycle }
+{ Callback procedure for detection cycle ended callback }
 procedure TExample.DetectionCycleEndedCB(sender: TBrickletMotionDetector);
 begin
   WriteLn('Detection Cycle Ended (next detection possible in ~3 seconds)');
@@ -49,10 +49,10 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Register detected callback to function MotionDetectedCB }
+  { Register motion detected callback to procedure MotionDetectedCB }
   md.OnMotionDetected := {$ifdef FPC}@{$endif}MotionDetectedCB;
 
-  { Register detection cycle ended callback to function DetectionCycleEndedCB }
+  { Register detection cycle ended callback to procedure DetectionCycleEndedCB }
   md.OnDetectionCycleEnded := {$ifdef FPC}@{$endif}DetectionCycleEndedCB;
 
   WriteLn('Press key to exit');

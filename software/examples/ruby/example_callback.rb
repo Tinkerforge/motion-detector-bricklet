@@ -16,13 +16,13 @@ md = BrickletMotionDetector.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Callback function for detected motion
-md.register_callback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED) do ||
+# Register motion detected callback
+md.register_callback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED) do
   puts 'Motion Detected'
 end
 
-# Callback function for end of detection cycle
-md.register_callback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED) do ||
+# Register detection cycle ended callback
+md.register_callback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED) do
   puts 'Detection Cycle Ended (next detection possible in ~3 seconds)'
 end
 

@@ -7,18 +7,18 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback function for end of detection cycle 
-void cb_detection_cycle_ended(void *user_data) {
-	(void)user_data; // avoid unused parameter warning
-
-	printf("Detection Cycle Ended (next detection possible in ~3 seconds)\n");
-}
-
-// Callback function for detected motion
+// Callback function for motion detected callback
 void cb_motion_detected(void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
 	printf("Motion Detected\n");
+}
+
+// Callback function for detection cycle ended callback
+void cb_detection_cycle_ended(void *user_data) {
+	(void)user_data; // avoid unused parameter warning
+
+	printf("Detection Cycle Ended (next detection possible in ~3 seconds)\n");
 }
 
 int main(void) {
@@ -37,7 +37,7 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Register detected callback to function cb_motion_detected
+	// Register motion detected callback to function cb_motion_detected
 	motion_detector_register_callback(&md,
 	                                  MOTION_DETECTOR_CALLBACK_MOTION_DETECTED,
 	                                  (void *)cb_motion_detected,

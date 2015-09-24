@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleCallback
@@ -5,14 +6,14 @@ Module ExampleCallback
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
 
-    ' Callback function for end of detection cycle
-    Sub DetectionCycleEndedCB(ByVal sender As BrickletMotionDetector)
-        System.Console.WriteLine("Detection Cycle Ended (next detection possible in ~3 seconds)")
+    ' Callback subroutine for motion detected callback
+    Sub MotionDetectedCB(ByVal sender As BrickletMotionDetector)
+        Console.WriteLine("Motion Detected")
     End Sub
 
-    ' Callback function for detected motion
-    Sub MotionDetectedCB(ByVal sender As BrickletMotionDetector)
-        System.Console.WriteLine("Motion Detected")
+    ' Callback subroutine for detection cycle ended callback
+    Sub DetectionCycleEndedCB(ByVal sender As BrickletMotionDetector)
+        Console.WriteLine("Detection Cycle Ended (next detection possible in ~3 seconds)")
     End Sub
 
     Sub Main()
@@ -22,14 +23,14 @@ Module ExampleCallback
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
-        ' Register detected callback to function MotionDetectedCB
+        ' Register motion detected callback to subroutine MotionDetectedCB
         AddHandler md.MotionDetected, AddressOf MotionDetectedCB
 
-        ' Register detection cycle ended callback to function DetectionCycleEndedCB
+        ' Register detection cycle ended callback to subroutine DetectionCycleEndedCB
         AddHandler md.DetectionCycleEnded, AddressOf DetectionCycleEndedCB
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

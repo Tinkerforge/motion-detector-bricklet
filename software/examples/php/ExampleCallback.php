@@ -10,16 +10,16 @@ const HOST = 'localhost';
 const PORT = 4223;
 const UID = 'XYZ'; // Change to your UID
 
-// Callback function for end of detection cycle
-function cb_detection_cycle_ended()
-{
-    echo "Detection Cycle Ended (next detection possible in ~3 seconds)\n";
-}
-
-// Callback function for detected motion
-function cb_motion_detected()
+// Callback function for motion detected callback
+function cb_motionDetected()
 {
     echo "Motion Detected\n";
+}
+
+// Callback function for detection cycle ended callback
+function cb_detectionCycleEnded()
+{
+    echo "Detection Cycle Ended (next detection possible in ~3 seconds)\n";
 }
 
 $ipcon = new IPConnection(); // Create IP connection
@@ -28,11 +28,11 @@ $md = new BrickletMotionDetector(UID, $ipcon); // Create device object
 $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Register detected callback to function cb_motion_detected
-$md->registerCallback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED, 'cb_motion_detected');
+// Register motion detected callback to function cb_motionDetected
+$md->registerCallback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED, 'cb_motionDetected');
 
-// Register detection cycle ended callback to function cb_detection_cycle_ended
-$md->registerCallback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED, 'cb_detection_cycle_ended');
+// Register detection cycle ended callback to function cb_detectionCycleEnded
+$md->registerCallback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED, 'cb_detectionCycleEnded');
 
 echo "Press ctrl+c to exit\n";
 $ipcon->dispatchCallbacks(-1); // Dispatch callbacks forever
