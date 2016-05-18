@@ -51,6 +51,7 @@ int main(void) {
 
 	printf("Press key to exit\n");
 	getchar();
+	motion_detector_destroy(&md);
 	ipcon_destroy(&ipcon); // Calls ipcon_disconnect internally
 	return 0;
 }
