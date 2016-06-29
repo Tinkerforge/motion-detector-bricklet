@@ -32,7 +32,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 $md->registerCallback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED, 'cb_motionDetected');
 
 // Register detection cycle ended callback to function cb_detectionCycleEnded
-$md->registerCallback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED, 'cb_detectionCycleEnded');
+$md->registerCallback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED,
+                      'cb_detectionCycleEnded');
 
 echo "Press ctrl+c to exit\n";
 $ipcon->dispatchCallbacks(-1); // Dispatch callbacks forever
