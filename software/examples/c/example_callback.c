@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "XYZ" // Change to your UID
+#define UID "XYZ" // Change XYZ to the UID of your Motion Detector Bricklet
 
 // Callback function for motion detected callback
 void cb_motion_detected(void *user_data) {

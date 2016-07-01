@@ -4,7 +4,7 @@ Imports Tinkerforge
 Module ExampleCallback
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
-    Const UID As String = "XYZ" ' Change to your UID
+    Const UID As String = "XYZ" ' Change XYZ to the UID of your Motion Detector Bricklet
 
     ' Callback subroutine for motion detected callback
     Sub MotionDetectedCB(ByVal sender As BrickletMotionDetector)

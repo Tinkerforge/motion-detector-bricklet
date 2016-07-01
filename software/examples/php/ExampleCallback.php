@@ -8,7 +8,7 @@ use Tinkerforge\BrickletMotionDetector;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = 'XYZ'; // Change to your UID
+const UID = 'XYZ'; // Change XYZ to the UID of your Motion Detector Bricklet
 
 // Callback function for motion detected callback
 function cb_motionDetected()
@@ -29,7 +29,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Register motion detected callback to function cb_motionDetected
-$md->registerCallback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED, 'cb_motionDetected');
+$md->registerCallback(BrickletMotionDetector::CALLBACK_MOTION_DETECTED,
+                      'cb_motionDetected');
 
 // Register detection cycle ended callback to function cb_detectionCycleEnded
 $md->registerCallback(BrickletMotionDetector::CALLBACK_DETECTION_CYCLE_ENDED,

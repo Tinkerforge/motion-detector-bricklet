@@ -5,7 +5,7 @@ use Tinkerforge::BrickletMotionDetector;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'XYZ'; # Change to your UID
+use constant UID => 'XYZ'; # Change XYZ to the UID of your Motion Detector Bricklet
 
 # Callback subroutine for motion detected callback
 sub cb_motion_detected
