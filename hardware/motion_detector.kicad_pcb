@@ -6414,7 +6414,7 @@
   )
   (gr_line (start 45.4 29.8) (end 85.3 29.8) (angle 90) (layer Edge.Cuts) (width 0.381))
   (gr_line (start 45.4 54.8) (end 85.3 54.8) (angle 90) (layer Edge.Cuts) (width 0.381))
-  (gr_text "Motion\nDetection\n1.0" (at 84.8 36.85) (layer F.SilkS)
+  (gr_text "Motion\nDetector\n1.0" (at 84.8 36.85) (layer F.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.15)))
   )
   (gr_text tinkerforge.com (at 76.85 53.2) (layer B.SilkS)
