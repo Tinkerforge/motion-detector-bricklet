@@ -35,6 +35,16 @@ void invocation(const ComType com, const uint8_t *data) {
 			return;
 		}
 
+		case FID_SET_STATUS_LED_CONFIG: {
+			set_status_led_config(com, (SetStatusLEDConfig*)data);
+			return;
+		}
+
+		case FID_GET_STATUS_LED_CONFIG: {
+			get_status_led_config(com, (GetStatusLEDConfig*)data);
+			return;
+		}
+
 		default: {
 			BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_NOT_SUPPORTED, com);
 			return;
@@ -52,6 +62,30 @@ void get_motion_detected(const ComType com, const GetMotionDetected *data) {
 	logbli("get_motion_detected: %d\n\r", BC->motion);
 }
 
+void set_status_led_config(const ComType com, const SetStatusLEDConfig *data) {
+	if(data->led_config > STATUS_LED_CONFIG_STATUS) {
+		BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
+		return;
+	}
+
+	BC->status_led_config = data->led_config;
+
+	if((BC->status_led_config == STATUS_LED_CONFIG_OFF) || (BC->status_led_config == STATUS_LED_CONFIG_STATUS && BC->motion == MOTION_NOT_DETECTED)) {
+		PIN_LED.pio->PIO_SODR = PIN_LED.mask;
+	} else {
+		PIN_LED.pio->PIO_CODR = PIN_LED.mask;
+	}
+}
+
+void get_status_led_config(const ComType com, const GetStatusLEDConfig *data) {
+	GetStatusLEDConfigReturn gslcr;
+	gslcr.header        = data->header;
+	gslcr.header.length = sizeof(GetStatusLEDConfigReturn);
+	gslcr.led_config    = BC->status_led_config;
+
+	BA->send_blocking_with_timeout(&gslcr, sizeof(GetStatusLEDConfigReturn), com);
+}
+
 void constructor(void) {
 	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
 
@@ -59,6 +93,7 @@ void constructor(void) {
 	BC->motion_detected = false;
 	BC->detection_cycle_ended = false;
 	BC->debounce = 0;
+	BC->status_led_config = STATUS_LED_CONFIG_STATUS;
 
     PIN_DETECT.type = PIO_INPUT;
     PIN_DETECT.attribute = PIO_DEFAULT;
@@ -88,7 +123,9 @@ void tick(const uint8_t tick_type) {
 				BC->debounce = MOTION_DEBOUNCE;
 				BC->motion_detected = true;
 
-				PIN_LED.pio->PIO_CODR = PIN_LED.mask;
+				if(BC->status_led_config == STATUS_LED_CONFIG_STATUS) {
+					PIN_LED.pio->PIO_CODR = PIN_LED.mask;
+				}
 			}
 		} else {
 			if(BC->motion != MOTION_NOT_DETECTED) {
@@ -96,7 +133,9 @@ void tick(const uint8_t tick_type) {
 				BC->debounce = MOTION_DEBOUNCE;
 				BC->detection_cycle_ended = true;
 
-				PIN_LED.pio->PIO_SODR = PIN_LED.mask;
+				if(BC->status_led_config == STATUS_LED_CONFIG_STATUS) {
+					PIN_LED.pio->PIO_SODR = PIN_LED.mask;
+				}
 			}
 		}
 	}

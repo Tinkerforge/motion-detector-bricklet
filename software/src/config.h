@@ -34,7 +34,7 @@
 
 #define BRICKLET_FIRMWARE_VERSION_MAJOR 2
 #define BRICKLET_FIRMWARE_VERSION_MINOR 0
-#define BRICKLET_FIRMWARE_VERSION_REVISION 0
+#define BRICKLET_FIRMWARE_VERSION_REVISION 1
 
 #define BRICKLET_HARDWARE_VERSION_MAJOR 1
 #define BRICKLET_HARDWARE_VERSION_MINOR 0
@@ -56,6 +56,7 @@ typedef struct {
 	uint8_t debounce;
 	bool motion_detected;
 	bool detection_cycle_ended;
+	uint8_t status_led_config;
 } BrickContext;
 
 #endif
