@@ -3,18 +3,18 @@
 
 HOST = "localhost"
 PORT = 4223
-UID = "XYZ" # Change to your UID
+UID = "XYZ" # Change XYZ to the UID of your Motion Detector Bricklet
 
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_motion_detector import BrickletMotionDetector
 
-# Callback function for end of detection cycle
-def cb_detection_cycle_ended():
-    print('Detection Cycle Ended (next detection possible in ~3 seconds)')
-
-# Callback function for detected motion
+# Callback function for motion detected callback
 def cb_motion_detected():
-    print('Motion Detected')
+    print("Motion Detected")
+
+# Callback function for detection cycle ended callback
+def cb_detection_cycle_ended():
+    print("Detection Cycle Ended (next detection possible in ~3 seconds)")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -23,11 +23,11 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Register detected callback to function cb_motion_detected
+    # Register motion detected callback to function cb_motion_detected
     md.register_callback(md.CALLBACK_MOTION_DETECTED, cb_motion_detected)
 
     # Register detection cycle ended callback to function cb_detection_cycle_ended
     md.register_callback(md.CALLBACK_DETECTION_CYCLE_ENDED, cb_detection_cycle_ended)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

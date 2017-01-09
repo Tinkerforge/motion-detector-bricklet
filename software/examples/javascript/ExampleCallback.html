@@ -34,23 +34,24 @@
                 var md = new Tinkerforge.BrickletMotionDetector(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
-                // Register detected callback
+                // Register motion detected callback
                 md.on(Tinkerforge.BrickletMotionDetector.CALLBACK_MOTION_DETECTED,
-                    // Callback function for detected motion
-                    function() {
+                    // Callback function for motion detected callback
+                    function () {
                         textArea.value += 'Motion Detected\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
+
                 // Register detection cycle ended callback
                 md.on(Tinkerforge.BrickletMotionDetector.CALLBACK_DETECTION_CYCLE_ENDED,
-                    // Callback function for end of detection cycle
-                    function() {
+                    // Callback function for detection cycle ended callback
+                    function () {
                         textArea.value += 'Detection Cycle Ended (next detection possible in ~3 seconds)\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
