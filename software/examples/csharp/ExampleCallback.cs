@@ -28,10 +28,10 @@ class Example
 		// Don't use device before ipcon is connected
 
 		// Register motion detected callback to function MotionDetectedCB
-		md.MotionDetected += MotionDetectedCB;
+		md.MotionDetectedCallback += MotionDetectedCB;
 
 		// Register detection cycle ended callback to function DetectionCycleEndedCB
-		md.DetectionCycleEnded += DetectionCycleEndedCB;
+		md.DetectionCycleEndedCallback += DetectionCycleEndedCB;
 
 		Console.WriteLine("Press enter to exit");
 		Console.ReadLine();
