@@ -13,12 +13,12 @@ ipcon@Connect[host,port]
 (*Callback function for motion detected callback*)
 MotionDetectedCB[sender_]:=
  Print["Motion Detected"]
-AddEventHandler[md@MotionDetected,MotionDetectedCB]
+AddEventHandler[md@MotionDetectedCallback,MotionDetectedCB]
 
 (*Callback function for detection cycle ended callback*)
 DetectionCycleEndedCB[sender_]:=
  Print["Detection Cycle Ended (next detection possible in ~3 seconds)"]
-AddEventHandler[md@DetectionCycleEnded,DetectionCycleEndedCB]
+AddEventHandler[md@DetectionCycleEndedCallback,DetectionCycleEndedCB]
 
 Input["Click OK to exit"]
 

@@ -24,10 +24,10 @@ Module ExampleCallback
         ' Don't use device before ipcon is connected
 
         ' Register motion detected callback to subroutine MotionDetectedCB
-        AddHandler md.MotionDetected, AddressOf MotionDetectedCB
+        AddHandler md.MotionDetectedCallback, AddressOf MotionDetectedCB
 
         ' Register detection cycle ended callback to subroutine DetectionCycleEndedCB
-        AddHandler md.DetectionCycleEnded, AddressOf DetectionCycleEndedCB
+        AddHandler md.DetectionCycleEndedCallback, AddressOf DetectionCycleEndedCB
 
         Console.WriteLine("Press key to exit")
         Console.ReadLine()
